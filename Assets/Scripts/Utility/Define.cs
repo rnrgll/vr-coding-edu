@@ -17,4 +17,9 @@ public class Define
         Bool,
         String,
     }
+
+    public enum Layer
+    {
+        Interaction = 6,
+    }
 }

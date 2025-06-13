@@ -21,7 +21,6 @@ public class DragLine : MonoBehaviour
     {
         if (_line.enabled && _start && _end)
         {
-            Debug.Log("Updating line positions: " + _start.position + " to " + _end.position);
             _line.SetPosition(0, _start.position);
             _line.SetPosition(1, _end.position);
         }

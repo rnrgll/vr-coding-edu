@@ -1,12 +1,15 @@
-﻿using static Define;
+﻿using UnityEngine;
+using static Define;
 
-public abstract class Port
+public abstract class Port : MonoBehaviour
 {
     //포트 정보
     public string PortName { get; protected set; }
-    public BaseNode ParentNode { get; protected set; }
-    public Port ConnectedPort { get; protected set; }
+    public BaseNode ParentNode { get; protected set; } = null;
+    public Port ConnectedPort { get; protected set; } = null;
     public PortDirection Direction { get; protected set; }
+
+    public Transform HandlePos;
 
     public bool IsConnected => ConnectedPort != null;
 
@@ -15,14 +18,6 @@ public abstract class Port
     public abstract void Connect(Port other); //연결하기
     public abstract void Disconnect(); //연결 해제하기
 
-
-    //생성자
-    protected Port(BaseNode parentNode, PortDirection direction)
-    {
-        ParentNode = parentNode;
-        Direction = direction;
-        ConnectedPort = null;
-    }
 
     // 연결 포트 설정
     public void SetConnectedPort(Port port)
