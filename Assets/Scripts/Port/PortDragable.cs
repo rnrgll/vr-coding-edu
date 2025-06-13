@@ -98,10 +98,11 @@ public class PortDragable : MonoBehaviour
             Debug.Log("감지된 포트 있음");
             //가장 가까운 포트 찾기
             Port detecedPort = GetClosestPort();
-            Debug.Log(detecedPort.gameObject.name + " 포트가 가장 가까움");
+          
             //연결 시도
             if (myPort != null && detecedPort != null && myPort.CanConntectTo(detecedPort))
             {
+                Debug.Log(detecedPort.gameObject.name + " 포트가 가장 가까움");
                 //기존 연결 해제, 이벤트 구독 해제
                 if (myPort.IsConnected)
                 {
