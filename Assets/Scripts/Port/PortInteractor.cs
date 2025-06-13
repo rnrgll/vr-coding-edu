@@ -19,7 +19,7 @@ public class PortInteractor : MonoBehaviour
 
     private void Awake()
     {
-        myPort = GetComponentInParent<FlowPort>();
+        myPort = GetComponentInParent<Port>();
 
         dragHandle = transform;
         dragHandleOriginPos = myPort.HandlePos;
@@ -65,7 +65,7 @@ public class PortInteractor : MonoBehaviour
         curentLine.name = "Line";
 
         Debug.Log("curentLine != null line »ý¼º");
-        curentLine.Init(fixedBase, dragHandle);
+        curentLine.Init(fixedBase, dragHandle, myPort.PortColor);
     }
 
     private void OnGragEnd(SelectExitEventArgs args)

@@ -4,12 +4,13 @@ using static Define;
 public abstract class Port : MonoBehaviour
 {
     //포트 정보
-    public string PortName { get; protected set; }
-    public BaseNode ParentNode { get; protected set; } = null;
-    public Port ConnectedPort { get; protected set; } = null;
+    [field: SerializeField] public string PortName { get; protected set; }
+     [field: SerializeField] public BaseNode ParentNode { get; protected set; } = null;
+    [field: SerializeField]  public Port ConnectedPort { get; protected set; } = null;
     public PortDirection Direction { get; protected set; }
 
     public Transform HandlePos;
+    public Define.ColorName PortColor;
 
     public bool IsConnected => ConnectedPort != null;
 

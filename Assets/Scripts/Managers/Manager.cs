@@ -18,7 +18,7 @@ namespace Managers
             //매니저 생성 및 초기화 진행
             if (_instance != null) return;
 
-            var prefab = Resources.Load<GameObject>("Prefabs/@Manager");
+            var prefab = Resources.Load<GameObject>("Prefabs/Manager/@Manager");
             _instance = GameObject.Instantiate(prefab);
             _instance.gameObject.name = "@Manager";
             GameObject.DontDestroyOnLoad(_instance);

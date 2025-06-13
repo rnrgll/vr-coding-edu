@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: black
+  m_Name: Orange
   m_Shader: {fileID: 10703, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -45,8 +45,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 98adbc07126e57a4cb0d6076bc1a3765, type: 3}
-        m_Scale: {x: 0.5, y: 0.14}
-        m_Offset: {x: 0, y: 0.563}
+        m_Scale: {x: 0.5, y: 0.142857}
+        m_Offset: {x: 0.5, y: 0.714}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
