@@ -3,24 +3,24 @@ using static Define;
 
 public class FlowPort : Port
 {
-    [SerializeField]
-    private PortDirection direction = PortDirection.In;
-  
-    
-    private void Awake()
-    {
-        //Æ÷Æ® ¹æÇâ ¼³Á¤
-        Direction = direction;
-        PortName = $"Flow {Direction.ToString()} Port"; // Æ÷Æ® ÀÌ¸§ ¼³Á¤
-        //TODO : ºÎ¸ğ ³ëµå ¼³Á¤
-        // ParentNode = GetComponentInParent<BaseNode>(); // ºÎ¸ğ ³ëµå ¼³Á¤ (ÇÊ¿ä½Ã)
+    [SerializeField] private PortDirection direction = PortDirection.In;
 
-        ConnectedPort = null; // ÃÊ±â ¿¬°á Æ÷Æ®´Â ¾øÀ½
+
+    private void Awake() => Init();
+
+    protected override void Init()
+    {
+        base.Init();
+        
+        //í¬íŠ¸ ë°©í–¥ ì„¤ì •
+        Direction = direction;
+        PortName = $"Flow {Direction.ToString()} Port"; // í¬íŠ¸ ì´ë¦„ ì„¤ì •
+        ConnectedPort = null; // ì´ˆê¸° ì—°ê²° í¬íŠ¸ëŠ” ì—†ìŒ
     }
 
 
 
-    public override bool CanConntectTo(Port otherPort)
+public override bool CanConntectTo(Port otherPort)
     {
         return otherPort is FlowPort && Direction != otherPort.Direction;
     }
@@ -31,7 +31,7 @@ public class FlowPort : Port
         if (CanConntectTo(other))
         {
             ConnectedPort = other;
-            other.SetConnectedPort(this); // »ó´ë Æ÷Æ®ÀÇ ¿¬°á ¼³Á¤(¾ç¹æÇâ ¼³Á¤)
+            other.SetConnectedPort(this); // ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         }
     }
     public override void Disconnect()
@@ -39,9 +39,9 @@ public class FlowPort : Port
         if (ConnectedPort != null)
         {
 
-            ConnectedPort.SetConnectedPort(null); // »ó´ë Æ÷Æ®ÀÇ ¿¬°á ÇØÁ¦
-            ConnectedPort = null; // ÀÚ½Å ¿¬°á ÇØÁ¦
-            Debug.Log($"¿¬°á »óÅÂ ÃÊ±âÈ­ÇÔ : {IsConnected}");
+            ConnectedPort.SetConnectedPort(null); // ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            ConnectedPort = null; // ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            Debug.Log($"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ : {IsConnected}");
 
         }
     }

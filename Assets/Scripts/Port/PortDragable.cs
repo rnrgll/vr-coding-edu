@@ -1,24 +1,30 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PortInteractor : MonoBehaviour
+[RequireComponent(typeof(XRGrabInteractable))]
+public class PortDragable : MonoBehaviour
 {
-    [Header("Drag Line")]
+    [Header("Drag Line & Handle")]
     public DragLine dragLinePrefab;
     [SerializeField] private Transform fixedBase;
     [SerializeField] private Transform dragHandle;
     private Transform dragHandleOriginPos;
 
+
+    [Header("Port Logic")]
+    [SerializeField] private Port myPort; //í˜„ì¬ í¬íŠ¸
+    private List<Port> detectedPorts = new();
     private DragLine curentLine;
     private XRGrabInteractable grabInteractable;
-
-    [Header("Port Detection")]
-    [SerializeField] private Port myPort; //ÇöÀç Æ÷Æ®
-    private List<Port> detectedPorts = new();
-
-    private void Awake()
+    private Rigidbody _rigidbody;
+    
+    private void Awake() => Init();
+    private void Init()
     {
+        _rigidbody = GetComponent<Rigidbody>();
+        
         myPort = GetComponentInParent<Port>();
 
         dragHandle = transform;
@@ -27,10 +33,19 @@ public class PortInteractor : MonoBehaviour
         grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.selectEntered.AddListener(OnGrabStart);
         grabInteractable.selectExited.AddListener(OnGragEnd);
-
     }
 
+    private void OnEnable()
+    {
+        grabInteractable.selectEntered.AddListener(OnGrabStart);
+        grabInteractable.selectExited.AddListener(OnGragEnd);
+    }
 
+    private void OnDisable()
+    {
+        grabInteractable.selectEntered.RemoveListener(OnGrabStart);
+        grabInteractable.selectExited.RemoveListener(OnGragEnd);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (myPort.IsConnected) return;
@@ -39,7 +54,7 @@ public class PortInteractor : MonoBehaviour
         {
            
             if (!detectedPorts.Contains(port)) {
-                Debug.Log(port.PortName + " Æ÷Æ® °¨ÁöµÊ");
+                Debug.Log(port.PortName + " í¬íŠ¸ ê°ì§€ë¨");
                 detectedPorts.Add(port);
             }
                 
@@ -58,45 +73,56 @@ public class PortInteractor : MonoBehaviour
     private void OnGrabStart(SelectEnterEventArgs args)
     {
         Debug.Log("OnGrabStart");
+        _rigidbody.isKinematic = false;
+        
         myPort.Disconnect();
 
         if (curentLine != null) return;
         curentLine = Instantiate(dragLinePrefab, fixedBase.position, Quaternion.identity, myPort.transform);
         curentLine.name = "Line";
 
-        Debug.Log("curentLine != null line »ı¼º");
+        Debug.Log("curentLine != null line ìƒì„±");
         curentLine.Init(fixedBase, dragHandle, myPort.PortColor);
     }
 
     private void OnGragEnd(SelectExitEventArgs args)
     {
         Debug.Log("onGragEnd");
+        _rigidbody.isKinematic = true;
+        
         if (curentLine == null) return;
         Debug.Log("curentLine != null");
-        //°¨ÁöÇÑ Æ÷Æ®°¡ ÀÖ´Â °æ¿ì
+        //ê°ì§€í•œ í¬íŠ¸ê°€ ìˆëŠ” ê²½ìš°
         if (detectedPorts.Count!=0)
         {
-            Debug.Log("°¨ÁöµÈ Æ÷Æ® ÀÖÀ½");
-            //°¡Àå °¡±î¿î Æ÷Æ® Ã£±â
+            Debug.Log("ê°ì§€ëœ í¬íŠ¸ ìˆìŒ");
+            //ê°€ì¥ ê°€ê¹Œìš´ í¬íŠ¸ ì°¾ê¸°
             Port detecedPort = GetClosestPort();
-            Debug.Log(detecedPort.gameObject.name + " Æ÷Æ®°¡ °¡Àå °¡±î¿ò");
-            //¿¬°á ½Ãµµ
+            Debug.Log(detecedPort.gameObject.name + " í¬íŠ¸ê°€ ê°€ì¥ ê°€ê¹Œì›€");
+            //ì—°ê²° ì‹œë„
             if (myPort != null && detecedPort != null && myPort.CanConntectTo(detecedPort))
             {
-                //±âÁ¸ ¿¬°á ÇØÁ¦
-                if(myPort.IsConnected)
+                //ê¸°ì¡´ ì—°ê²° í•´ì œ, ì´ë²¤íŠ¸ êµ¬ë… í•´ì œ
+                if (myPort.IsConnected)
+                {
                     myPort.Disconnect();
+                    myPort.ParentNode.GetComponent<NodeDragable>().OnMoved.RemoveListener(UpdateHandlePosition);
+                }
+                 
+                
+                //ìƒˆë¡œìš´ ì—°ê²° ì„¤ì •, ì´ë²¤íŠ¸ êµ¬ë…
                 myPort.Connect(detecedPort);
-                transform.position = detecedPort.HandlePos.position; //¿¬°áµÈ À§Ä¡·Î º¯°æ
-                Debug.Log("Æ÷Æ® ¿¬°á");
+                detecedPort.ParentNode.GetComponent<NodeDragable>().OnMoved.AddListener(UpdateHandlePosition);
+                dragHandle.position = detecedPort.HandlePos.position; //ì—°ê²°ëœ ìœ„ì¹˜ë¡œ ë³€ê²½
+                Debug.Log("í¬íŠ¸ ì—°ê²°");
                 return;
             }
         }
 
-        //°¨ÁöµÈ Æ÷Æ®°¡ ¾ø´Â °æ¿ì OR ¿¬°á ºÒ°¡´ÉÇÑ °æ¿ì ---
-        // ¿¬°á »óÅÂ¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+        //ê°ì§€ëœ í¬íŠ¸ê°€ ì—†ëŠ” ê²½ìš° OR ì—°ê²° ë¶ˆê°€ëŠ¥í•œ ê²½ìš° ---
+        // ì—°ê²° ìƒíƒœë¥¼ ì´ˆê¸°í™”í•œë‹¤.
         //myPort.Disconnect();
-        // dragHandleÀ» ¿ø·¡ À§Ä¡·Î º¹±¸½ÃÅ²´Ù.
+        // dragHandleì„ ì›ë˜ ìœ„ì¹˜ë¡œ ë³µêµ¬ì‹œí‚¨ë‹¤.
         dragHandle.position = dragHandleOriginPos.position;
         curentLine.DestroyLine();
         curentLine = null;
@@ -110,7 +136,7 @@ public class PortInteractor : MonoBehaviour
 
         foreach (var port in detectedPorts)
         {
-            if (port == null || port.IsConnected) continue; // ¿¬°áµÈ Æ÷Æ®´Â Á¦¿Ü
+            if (port == null || port.IsConnected) continue; // ì—°ê²°ëœ í¬íŠ¸ëŠ” ì œì™¸
             float distance = Vector3.Distance(dragHandle.position, port.transform.position);
             if (distance < minDistance)
             {
@@ -119,5 +145,11 @@ public class PortInteractor : MonoBehaviour
             }
         }
         return closest;
+    }
+
+    private void UpdateHandlePosition()
+    {
+        Debug.Log("Drag Handle Position Update");
+        dragHandle.position = myPort.ConnectedPort.HandlePos.position;
     }
 }

@@ -19,6 +19,13 @@ public abstract class Port : MonoBehaviour
     public abstract void Connect(Port other); //연결하기
     public abstract void Disconnect(); //연결 해제하기
 
+    
+    //초기화
+    protected virtual void Init()
+    {
+        ParentNode = GetComponentInParent<BaseNode>();
+    }
+    
 
     // 연결 포트 설정
     public void SetConnectedPort(Port port)

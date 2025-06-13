@@ -14,12 +14,11 @@ public class DataPort<T> : Port
 
     private void Awake() => Init();
 
-    protected virtual void Init()
+    protected override void Init()
     {
+        base.Init();
+        
         PortName = $"Data {Direction.ToString()} Port"; // 포트 이름 설정
-        //TODO : 부모 노드 설정
-        // ParentNode = GetComponentInParent<BaseNode>(); // 부모 노드 설정 (필요시)
-
         ConnectedPort = null; // 초기 연결 포트는 없음
 
     }
