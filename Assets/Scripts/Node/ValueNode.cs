@@ -26,9 +26,5 @@ namespace Node
             _value = input;
             _dataOutPort.SetValue(input);
         }
-        
-        
-        //실행과 무관환 노드.
-        public override void Execute() { }
     }
 }

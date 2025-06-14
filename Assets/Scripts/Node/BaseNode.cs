@@ -10,5 +10,5 @@ public abstract class BaseNode : MonoBehaviour
     public List<Port> inputPorts;
     public List<Port> outputPorts;
 
-    public abstract void Execute();
+    public bool errorFlag = true;
 }

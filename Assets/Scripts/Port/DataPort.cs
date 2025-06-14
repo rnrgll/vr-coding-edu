@@ -38,6 +38,8 @@ public class DataPort<T> : Port
         {
             ConnectedPort = other;
             other.SetConnectedPort(this); // 상대 포트의 연결 설정(양방향 설정)
+            
+            OnConnectionChanged?.Invoke(true);
         }
     }
     public override void Disconnect()
@@ -48,7 +50,9 @@ public class DataPort<T> : Port
             ConnectedPort.SetConnectedPort(null); // 상대 포트의 연결 해제
             ConnectedPort = null; // 자신 연결 해제
             Debug.Log($"연결 상태 초기화함 : {IsConnected}");
-
+            
+            OnConnectionChanged?.Invoke(false);
+        
         }
     }
 }

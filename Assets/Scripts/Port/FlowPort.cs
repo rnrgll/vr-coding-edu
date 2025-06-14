@@ -32,7 +32,10 @@ public override bool CanConntectTo(Port otherPort)
         {
             ConnectedPort = other;
             other.SetConnectedPort(this); // ��� ��Ʈ�� ���� ����(����� ����)
+            OnConnectionChanged?.Invoke(true);
         }
+
+        
     }
     public override void Disconnect()
     {
@@ -42,7 +45,7 @@ public override bool CanConntectTo(Port otherPort)
             ConnectedPort.SetConnectedPort(null); // ��� ��Ʈ�� ���� ����
             ConnectedPort = null; // �ڽ� ���� ����
             Debug.Log($"���� ���� �ʱ�ȭ�� : {IsConnected}");
-
+            OnConnectionChanged?.Invoke(false);
         }
     }
 }

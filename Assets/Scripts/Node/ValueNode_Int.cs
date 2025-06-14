@@ -15,8 +15,6 @@ namespace Node
         [SerializeField] private int _maxValue = 99;
         [SerializeField] private XRKeyboardDisplay _xrKeyboard;
         
-        private int _lastValidValue = 0;
-        
         private void OnEnable()
         {
             _inputField.onEndEdit.AddListener(OnInputEnded);

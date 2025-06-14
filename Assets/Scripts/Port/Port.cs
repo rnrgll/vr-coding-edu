@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using static Define;
 
 public abstract class Port : MonoBehaviour
@@ -18,7 +19,10 @@ public abstract class Port : MonoBehaviour
     public abstract bool CanConntectTo(Port otherPort); // 연결 가능한지 확인하기
     public abstract void Connect(Port other); //연결하기
     public abstract void Disconnect(); //연결 해제하기
-
+    
+    //연결/해제 될 때 발생하는 이벤트
+    public Action<bool> OnConnectionChanged;
+    
     
     //초기화
     protected virtual void Init()

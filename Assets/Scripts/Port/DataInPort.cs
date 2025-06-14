@@ -1,4 +1,6 @@
-﻿using static Define;
+﻿using System.Collections;
+using UnityEngine;
+using static Define;
 
 public class DataInPort<T> : DataPort<T>
 {
@@ -9,13 +11,23 @@ public class DataInPort<T> : DataPort<T>
         Direction = PortDirection.In; // 입력 포트로 설정
     }
 
-    public void FetchData()
+    public IEnumerator FetchData()
     {
-
-        if (ConnectedPort != null)
+        if (ConnectedPort == null)
         {
-            value = ConnectedDataPort.Value;
+            Debug.Log("연결된 포트가 없습니다.");
+            yield break;
         }
+
+        if (ConnectedPort is not DataOutPort<T> dataOutPort)
+        {
+            Debug.LogError("연결된 포트가 예상 타입과 일치하지 않습니다.");
+            yield break;
+        }
+
+        yield return dataOutPort.PrepareValue(); // 값 준비
+        value = dataOutPort.Value;
+        
     }
 }
 
