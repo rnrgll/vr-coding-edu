@@ -8,7 +8,7 @@ public class DataOutPort<T> : DataPort<T>
         base.Init();
         Direction = PortDirection.Out; // 입력 포트로 설정
     }
-    public void SetVallue(T value)
+    public void SetValue(T value)
     {
         this.value = value;
     }

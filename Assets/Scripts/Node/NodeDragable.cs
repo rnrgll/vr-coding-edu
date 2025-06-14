@@ -12,7 +12,6 @@ public class NodeDragable : MonoBehaviour
     private Rigidbody _rigidbody;
     private Vector3 _lastPosition;
     private XRGrabInteractable _grab;
-    [SerializeField] private Collider _grabCollider;
     public UnityEvent OnMoved = new();
 
 
