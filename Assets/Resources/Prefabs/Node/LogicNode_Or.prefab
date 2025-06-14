@@ -286,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 4291063747633276327}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.282, y: 0, z: 0}
+  m_LocalPosition: {x: 0.2716856, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1107,7 +1107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3182400456864195385, guid: 857dd3aff42f141f48b709b46b827492, type: 3}
       propertyPath: m_Name
-      value: LogicNode_Or Variant
+      value: LogicNode_Or
       objectReference: {fileID: 0}
     - target: {fileID: 7753817082707564143, guid: 857dd3aff42f141f48b709b46b827492, type: 3}
       propertyPath: _logicType
