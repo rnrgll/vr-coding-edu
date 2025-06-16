@@ -12,6 +12,8 @@ namespace Managers
 
     public class NodeManager : Singleton<NodeManager>
     {
+        public FlowRunner Flow;
+        
         [SerializeField] private ResultModalUI _resultModal;
         private Coroutine runProgram;
         
@@ -24,7 +26,7 @@ namespace Managers
             SingletonInit();
         }
 
-        public void Run()
+        public void Run(RunButton runButton)
         {
             runProgram = StartCoroutine(RunProgram());
         }
@@ -45,7 +47,7 @@ namespace Managers
                 yield break;
             }
             
-            yield return FlowRunner.Instance.Run(startNode);
+            yield return Flow.Run(startNode);
 
             _resultModal.SetComplete();
 
@@ -53,7 +55,7 @@ namespace Managers
 
         public void SetCompileError(string error)
         {
-            StopAllCoroutines();
+            StopCoroutine(runProgram);
             _resultModal.SetErrorMsg(error);
         }
     

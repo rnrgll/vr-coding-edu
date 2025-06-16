@@ -1,4 +1,5 @@
 using System.Collections;
+using Managers;
 using Runner;
 using UnityEngine;
 
@@ -42,7 +43,7 @@ namespace Node
             _selectedBranch = condition ? trueFlow : falseFlow;
             
             BaseNode next = _selectedBranch.ConnectedPort.ParentNode;
-            yield return FlowRunner.Instance.Run(next);
+            yield return Manager.Node.Flow.Run(next);
             
             
 

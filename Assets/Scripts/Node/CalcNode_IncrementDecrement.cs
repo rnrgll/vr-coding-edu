@@ -49,7 +49,8 @@ namespace Node
             _result = _operatorType switch
             {
                 Operator.Increment => dataInPort.Value + 1,
-                Operator.Decrement => dataInPort.Value - 1
+                Operator.Decrement => dataInPort.Value - 1,
+                _ => dataInPort.Value
             };
             
             _dataOutPort.SetValue(_result);

@@ -8,7 +8,7 @@ namespace Managers
         private static GameObject _instance;
         
         //Manager 등록
-        public static UIManager UI => UIManager.Instance;
+        public static NodeManager Node => NodeManager.Instance;
         public static ValueManager Value => ValueManager.Instance;
         public static CatManager Cat => CatManager.Instance;
         
