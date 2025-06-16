@@ -10,5 +10,9 @@ namespace Node
         {
             yield return Manager.Cat.Controller.PlayMeow();
         }
+        public FlowPort NextFlow()
+        {
+            return outputPorts[0] as FlowPort;
+        }
     }
 }

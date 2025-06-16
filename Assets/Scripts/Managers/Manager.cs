@@ -9,7 +9,7 @@ namespace Managers
         
         //Manager 등록
         public static UIManager UI => UIManager.Instance;
-        public static DataManager Data => DataManager.Instance;
+        public static ValueManager Value => ValueManager.Instance;
         public static CatManager Cat => CatManager.Instance;
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

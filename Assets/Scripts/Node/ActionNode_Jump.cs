@@ -10,5 +10,10 @@ namespace Node
         {
             yield return Manager.Cat.Controller.PlayJump();
         }
+
+        public FlowPort NextFlow()
+        {
+            return outputPorts[0] as FlowPort;
+        }
     }
 }

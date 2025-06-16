@@ -11,5 +11,9 @@ namespace Node
             yield return Manager.Cat.Controller.PlayPunch();
 
         }
+        public FlowPort NextFlow()
+        {
+            return outputPorts[0] as FlowPort;
+        }
     }
 }

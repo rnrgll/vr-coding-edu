@@ -10,5 +10,9 @@ namespace Node
         {
             yield return Manager.Cat.Controller.PlaySit();
         }
+        public FlowPort NextFlow()
+        {
+            return outputPorts[0] as FlowPort;
+        }
     }
 }

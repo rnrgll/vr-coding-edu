@@ -38,5 +38,9 @@ namespace Node
             
             yield return Manager.Cat.Controller.MoveForward(distance, duration);
         }
+        public FlowPort NextFlow()
+        {
+            return outputPorts[0] as FlowPort;
+        }
     }
 }

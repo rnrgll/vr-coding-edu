@@ -36,6 +36,10 @@ namespace Node
             
             yield return Manager.Cat.Controller.Say(message, duration);
         }
+        public FlowPort NextFlow()
+        {
+            return outputPorts[0] as FlowPort;
+        }
     }
 
 }

@@ -18,5 +18,9 @@ namespace Node
         {
             this.angle = angle;
         }
+        public FlowPort NextFlow()
+        {
+            return outputPorts[0] as FlowPort;
+        }
     }
 }
