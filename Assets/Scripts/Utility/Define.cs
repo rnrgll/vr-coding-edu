@@ -58,4 +58,15 @@ public class Define
         { ColorName.LimeGreen, new Color32(99, 193, 50, 255) },
 
     };
+    
+    public enum CatAnimation
+    {
+        IdleC= 36,
+        Jump = 50,
+        Sit = 24,
+        ATK1 = 37,
+        Meow = 11,
+        Walk = 21,
+        
+    }
 }
