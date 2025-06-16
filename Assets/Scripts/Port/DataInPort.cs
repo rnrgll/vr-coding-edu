@@ -24,7 +24,7 @@ public class DataInPort<T> : DataPort<T>
             Debug.LogError("연결된 포트가 예상 타입과 일치하지 않습니다.");
             yield break;
         }
-
+        
         yield return dataOutPort.PrepareValue(); // 값 준비
         value = dataOutPort.Value;
         

@@ -12,14 +12,14 @@ namespace Node
             Or,
         }
         [Header("Operation Type")] [SerializeField]
-        private LogicOperator _logicType;
+        private LogicOperator logicType;
         
-        private DataOutPort<bool> _dataOutPort;
-        private bool _result;
+        private DataOutPort<bool> dataOutPort;
+        private bool result;
         
         private void Start()
         {
-            _dataOutPort = outputPorts[0] as DataOutPort<bool>;
+            dataOutPort = outputPorts[0] as DataOutPort<bool>;
         }
         
         public IEnumerator ProcessData()
@@ -39,14 +39,14 @@ namespace Node
             yield return dataInPort2.FetchData();
             
 
-            _result = _logicType switch
+            result = logicType switch
             {
                 LogicOperator.And => dataInPort1.Value && dataInPort2.Value,
                 LogicOperator.Or => dataInPort1.Value || dataInPort2.Value,
                 _ => false
             };
             
-            _dataOutPort.SetValue(_result);            
+            dataOutPort.SetValue(result);
 
         }
     }

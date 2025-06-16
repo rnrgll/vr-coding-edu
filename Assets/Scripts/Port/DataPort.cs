@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using static Define;
 
 public class DataPort<T> : Port
@@ -29,7 +24,7 @@ public class DataPort<T> : Port
 
     public override bool CanConntectTo(Port otherPort)
     {
-        return otherPort is DataPort<T> && Direction != otherPort.Direction;
+        return (otherPort is DataPort<T>||otherPort is FlexibleDataInPort) && Direction != otherPort.Direction;
     }
 
     public override void Connect(Port other)
