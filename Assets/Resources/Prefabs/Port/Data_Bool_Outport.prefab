@@ -10,12 +10,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 499035051382098449, guid: c5c2d8088b92526488ac043a1dd48325, type: 3}
       propertyPath: m_Name
-      value: Data_Bool_Outport Variant
+      value: Data_Bool_Outport
       objectReference: {fileID: 0}
     - target: {fileID: 5387486884985739953, guid: c5c2d8088b92526488ac043a1dd48325, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9298ef0ec42ed324ba6a46a658b98135, type: 2}
+    - target: {fileID: 5762222329950086652, guid: c5c2d8088b92526488ac043a1dd48325, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5762222329950086652, guid: c5c2d8088b92526488ac043a1dd48325, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2341428469747760173, guid: af084d4df993bae40a225cdaae63eae0, type: 3}
       propertyPath: m_Name
-      value: Data_Float_Outport Variant
+      value: Data_Float_Outport
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594484972588356544, guid: af084d4df993bae40a225cdaae63eae0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7594484972588356544, guid: af084d4df993bae40a225cdaae63eae0, type: 3}
       propertyPath: m_LocalPosition.x
