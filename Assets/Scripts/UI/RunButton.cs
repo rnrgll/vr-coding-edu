@@ -7,8 +7,9 @@ namespace NodeUI
     public class RunButton : MonoBehaviour
     {
         [SerializeField] private XRSimpleInteractable interactable;
-        [SerializeField]
-        public bool isClicked = false;
+
+        [SerializeField] private
+         bool isClicked = false;
         private void OnEnable()
         {
             interactable.selectEntered.AddListener(OnButtonPressed);
@@ -25,6 +26,11 @@ namespace NodeUI
             isClicked = true;
             Debug.Log("button pressed");
             Manager.Node.Run(this);
+        }
+
+        public void ResetClick()
+        {
+            isClicked = false;
         }
     }
 }

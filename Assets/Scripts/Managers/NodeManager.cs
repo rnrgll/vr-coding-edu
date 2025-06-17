@@ -16,8 +16,33 @@ namespace Managers
         
         [SerializeField] private ResultModalUI _resultModal;
         private Coroutine runProgram;
+
         
-        
+        //delete--------
+        private bool deleteMode = false;
+        public event Action<bool> OnDeleteModeChanged;
+
+        public bool DeleteMode
+        {
+            get
+            {
+                return deleteMode;
+
+            }
+
+            set
+            {
+                if (deleteMode != value)
+                {
+                    deleteMode = value;
+                    OnDeleteModeChanged?.Invoke(value);
+
+                }
+
+            }
+
+
+        }
         private void Awake() => Init();
 
         private void Init()

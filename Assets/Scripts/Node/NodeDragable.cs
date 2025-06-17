@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DesignPattern;
+using Managers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -38,6 +39,12 @@ public class NodeDragable : MonoBehaviour
 
     void OnGrabStart(SelectEnterEventArgs args)
     {
+        if (Manager.Node.DeleteMode)
+        {
+            DeleteNode();
+            return;
+        }
+
         _rigidbody.isKinematic = false; // 이동 가능
     }
 
@@ -55,4 +62,21 @@ public class NodeDragable : MonoBehaviour
         }
     }
 
+    private void DeleteNode()
+    {
+        BaseNode node = GetComponent<BaseNode>();
+        if (node == null) return;
+        foreach (Port inputPort in node.inputPorts)
+        {
+            if(inputPort.IsConnected)
+                inputPort.Disconnect();
+        }
+        foreach (Port outputPort in node.outputPorts)
+        {
+            if(outputPort.IsConnected)
+                outputPort.Disconnect();
+        }
+        Debug.Log("모든 포트 연결 해제 후 게임 오브젝트 파괴");
+        Destroy(gameObject);
+    }
 }
