@@ -1,4 +1,5 @@
 using System.Collections;
+using Managers;
 using TMPro;
 using UnityEngine;
 
@@ -40,8 +41,7 @@ namespace Node
             if (!dataInPort.IsConnected)
             {
                 Debug.Log("[PortError] 입력 포트가 연결되지 않았습니다.");
-                //todo: compileError
-                // NodeManager.Instance.SetCompileError(true, "port");
+                Manager.Node.SetCompileError("port is not connected");
                 yield break;
             }
             yield return dataInPort.FetchData();

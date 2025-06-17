@@ -18,7 +18,7 @@ namespace Node
             {
                 //todo:nodemanager
                 Debug.LogWarning("[GetVariableNode] No variable selected.");
-                //NodeManager.Instance.SetCompileError(true, "No variable selected.");
+                Manager.Node.SetCompileError("No variable selected.");
                 yield break;
             }
             variableName = dropdown.options[dropdown.value].text;

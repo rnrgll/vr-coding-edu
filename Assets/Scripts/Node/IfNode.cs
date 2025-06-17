@@ -19,22 +19,19 @@ namespace Node
         {
             if (!nextFlow.IsConnected)
             {
-                //todo:nodemanager
-                //NodeManager.Instance.SetCompileError(true, "The green outFlow port must be connected.");
+                Manager.Node.SetCompileError("The green outFlow port must be connected.");
                 yield break;
             }
 
             if (!trueFlow.IsConnected && !falseFlow.IsConnected)
             {
-                //todo:nodemanager
-                //NodeManager.Instance.SetCompileError(true, "At least one of the true/false outFlow ports must be connected.");
+                Manager.Node.SetCompileError("At least one of the true/false outFlow ports must be connected.");
                 yield break;
             }
 
             if (!conditionInPort.IsConnected)
             {
-                //todo:nodemanager
-                //NodeManager.Instance.SetCompileError(true, "Condition input is not connected.");
+                Manager.Node.SetCompileError("Condition input is not connected.");
                 yield break;
             }
             yield return conditionInPort.FetchData();
@@ -44,8 +41,6 @@ namespace Node
             
             BaseNode next = _selectedBranch.ConnectedPort.ParentNode;
             yield return Manager.Node.Flow.Run(next);
-            
-            
 
         }
 

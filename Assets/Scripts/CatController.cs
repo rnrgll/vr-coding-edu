@@ -98,23 +98,24 @@ public class CatController : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    public IEnumerator MoveForward(float distance, float duration = 1f)
+    public IEnumerator MoveForward(float duration = 1f)
     {
-        Debug.Log($"[CatController] MoveForward: {distance} units over {duration}s");
+        Debug.Log($"[CatController] MoveForward: {duration}s");
 
         Vector3 start = _body.position;
-        Vector3 target = _body.position + _body.forward * distance;
+        //Vector3 target = _body.position + _body.forward * distance;
 
         _anim.SetInt($"animation, {(int)Define.CatAnimation.Walk}");
-        float elapsed = 0f;
-        while (elapsed < duration)
-        {
-            _body.position = Vector3.Lerp(start, target, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        _body.position = target;
+        // float elapsed = 0f;
+        // while (elapsed < duration)
+        // {
+        //     _body.position = Vector3.Lerp(start, target, elapsed / duration);
+        //     elapsed += Time.deltaTime;
+        //     yield return null;
+        // }
+        //
+        // _body.position = target;
+        yield return new WaitForSeconds(duration);
         _anim.SetInt($"animation, {(int)Define.CatAnimation.IdleC}");
         yield return new WaitForSeconds(1f);
     }

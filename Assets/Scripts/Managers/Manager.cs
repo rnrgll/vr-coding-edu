@@ -11,6 +11,7 @@ namespace Managers
         public static NodeManager Node => NodeManager.Instance;
         public static ValueManager Value => ValueManager.Instance;
         public static CatManager Cat => CatManager.Instance;
+        public static UIManager UI => UIManager.Instance;
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Initialize()
@@ -23,8 +24,6 @@ namespace Managers
             _instance.gameObject.name = "@Manager";
             GameObject.DontDestroyOnLoad(_instance);
             
-            // SceneManagerEx.SingletonInit();
-            // UIManager.SingletonInit();
             
         }
     }

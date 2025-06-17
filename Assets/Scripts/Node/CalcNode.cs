@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using Node;
 using UnityEngine;
 
@@ -30,8 +31,7 @@ public class CalcNode : BaseNode, IDataNode
         if (!dataInPort1.IsConnected || !dataInPort2.IsConnected)
         {
             Debug.Log("[PortError] 입력 포트가 연결되지 않았습니다.");
-            //todo: compileError
-            // NodeManager.Instance.SetCompileError(true, "port");
+            Manager.Node.SetCompileError("port is not connected");
             yield break;
         }
         
