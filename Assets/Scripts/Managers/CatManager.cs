@@ -1,23 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
 using DesignPattern;
+using Suriyun;
+using UnityEngine;
 
 namespace Managers
 {
-
-    public class DataManager : Singleton<DataManager>
+    public class CatManager : Singleton<CatManager>
     {
-        
+        public CatController Controller;
+        public AnimatorController Anim;
         private void Awake() => Init();
 
         private void Init()
         {
-            
             SingletonInit();
         }
-        
 
-    
     }
 }
