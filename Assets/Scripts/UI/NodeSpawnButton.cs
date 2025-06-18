@@ -21,8 +21,9 @@ namespace NodeUI
         
         private void SpawnNode(SelectEnterEventArgs args)
         {
-            GameObject node = Instantiate(nodePrefab, spawnPoint.position, Quaternion.identity);
-            node.transform.SetParent(parent);
+            GameObject node = Instantiate(nodePrefab, spawnPoint.position, spawnPoint.rotation,parent);
+            node.GetComponent<NodeDragable>().boundary = spawnPoint.GetComponent<BoxCollider>();
+            // node.transform.SetParent(parent);
         }
         
     }

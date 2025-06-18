@@ -551,7 +551,6 @@ MonoBehaviour:
   outputPorts:
   - {fileID: 4803515335194756145}
   errorFlag: 0
-  distance: 0
   duration: 1
 --- !u!114 &4803515335194756145 stripped
 MonoBehaviour:

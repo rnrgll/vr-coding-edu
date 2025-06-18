@@ -15,9 +15,11 @@ public class NodeDragable : MonoBehaviour
     private XRGrabInteractable _grab;
     public UnityEvent OnMoved = new();
 
+    //boundary constraint
+    public BoxCollider boundary;
 
     void Awake() => Init();
-    void Update() => UpdatePosition();
+    void FixedUpdate() => UpdatePosition();
     
     private void Init()
     {
@@ -55,11 +57,23 @@ public class NodeDragable : MonoBehaviour
 
     private void UpdatePosition()
     {
-        if (_grab.isSelected && transform.position != _lastPosition)
+        if (_grab.isSelected)
         {
-            OnMoved?.Invoke();
-            _lastPosition = transform.position;
+            if (transform.position != _lastPosition)
+            {
+                OnMoved?.Invoke();
+                _lastPosition = transform.position;
+            }
+
+            if (boundary != null && !boundary.bounds.Contains(transform.position))
+            {
+                Vector3 clamped = boundary.bounds.ClosestPoint(transform.position);
+                transform.position = clamped;
+            }
+           
+           
         }
+        
     }
 
     private void DeleteNode()

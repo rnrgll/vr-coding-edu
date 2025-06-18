@@ -254,6 +254,7 @@ MonoBehaviour:
   OnMoved:
     m_PersistentCalls:
       m_Calls: []
+  boundary: {fileID: 0}
 --- !u!114 &8280833325829790644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ MonoBehaviour:
   nodeName: End Node
   nodeId: End
   inputPorts:
-  - {fileID: 0}
+  - {fileID: 2806945663376280556}
   outputPorts: []
   errorFlag: 1
 --- !u!1 &7884658698204961694
@@ -452,6 +453,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2952178029744391754, guid: ed7ad0187ff7d644aa976590357b12cc, type: 3}
   m_PrefabInstance: {fileID: 2669215224247956357}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2806945663376280556 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 287864441565935721, guid: ed7ad0187ff7d644aa976590357b12cc, type: 3}
+  m_PrefabInstance: {fileID: 2669215224247956357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3145d392d0c1040a10ce379ba98dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2729652837306559586
 PrefabInstance:
   m_ObjectHideFlags: 0

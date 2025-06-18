@@ -384,6 +384,7 @@ MonoBehaviour:
   OnMoved:
     m_PersistentCalls:
       m_Calls: []
+  boundary: {fileID: 0}
 --- !u!1 &2108391740090625426
 GameObject:
   m_ObjectHideFlags: 0

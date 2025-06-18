@@ -1215,6 +1215,7 @@ MonoBehaviour:
   OnMoved:
     m_PersistentCalls:
       m_Calls: []
+  boundary: {fileID: 0}
 --- !u!1001 &952035399719473572
 PrefabInstance:
   m_ObjectHideFlags: 0

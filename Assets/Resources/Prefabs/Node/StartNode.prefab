@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 1566869442784121390}
   m_Layer: 7
   m_Name: StartNode
-  m_TagString: Untagged
+  m_TagString: startNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,6 +269,7 @@ MonoBehaviour:
   OnMoved:
     m_PersistentCalls:
       m_Calls: []
+  boundary: {fileID: 0}
 --- !u!114 &7833702360435250046
 MonoBehaviour:
   m_ObjectHideFlags: 0

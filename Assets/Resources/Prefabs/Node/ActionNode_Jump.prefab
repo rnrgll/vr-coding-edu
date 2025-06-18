@@ -274,6 +274,7 @@ MonoBehaviour:
   OnMoved:
     m_PersistentCalls:
       m_Calls: []
+  boundary: {fileID: 0}
 --- !u!1 &3834147680737738372
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +704,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7237524214812807400, guid: 669d92283dce2df418fb5ba28385e0d1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7609864736089185889, guid: 669d92283dce2df418fb5ba28385e0d1, type: 3}
       propertyPath: m_Name
       value: Flow_Outport
@@ -870,7 +875,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flow_Inport
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 247638072538678411, guid: ed7ad0187ff7d644aa976590357b12cc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using DesignPattern;
+using Node;
 using NodeUI;
 using Runner;
 using UnityEngine;
@@ -32,17 +33,14 @@ namespace Managers
 
             set
             {
-                if (deleteMode != value)
-                {
                     deleteMode = value;
                     OnDeleteModeChanged?.Invoke(value);
-
-                }
 
             }
 
 
         }
+        
         private void Awake() => Init();
 
         private void Init()
@@ -53,19 +51,28 @@ namespace Managers
 
         public void Run(RunButton runButton)
         {
+            Manager.Value.Clear();
             runProgram = StartCoroutine(RunProgram());
         }
 
         private IEnumerator RunProgram()
         {
-            var startNodeObj = GameObject.FindGameObjectWithTag("startNode");
-            if (startNodeObj == null)
+            var startNodes = GameObject.FindGameObjectsWithTag("startNode");
+
+            if (startNodes.Length == 0)
             {
                 SetCompileError("Start node not found.");
                 yield break;
             }
+
+            if (startNodes.Length > 1)
+            {
+                SetCompileError("Only one start node is allowed.");
+                yield break;
+            }
+
             
-            var startNode = startNodeObj.GetComponent<BaseNode>();
+            var startNode = startNodes[0].GetComponent<BaseNode>();
             if (startNode == null)
             {
                 SetCompileError("Start node component missing.");

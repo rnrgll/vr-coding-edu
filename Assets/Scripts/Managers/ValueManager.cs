@@ -14,9 +14,14 @@ namespace Managers
         public Dictionary<string, ValueEntry<bool>> BoolValues = new();
         public Dictionary<string, ValueEntry<string>> StrValues = new();
 
-        public UnityEvent OnUpdateValues;
+        public UnityEvent OnUpdateValues = new();
 
-        public void Reset()
+        private void Awake()
+        {
+            SingletonInit();
+        }
+
+        public void Clear()
         {
             IntValues.Clear();
             BoolValues.Clear();

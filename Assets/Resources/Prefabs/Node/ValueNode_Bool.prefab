@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.106, y: -0.418, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6483444297341211939}
   - {fileID: 5964163184106377090}
@@ -275,6 +275,7 @@ MonoBehaviour:
   OnMoved:
     m_PersistentCalls:
       m_Calls: []
+  boundary: {fileID: 0}
 --- !u!1 &4896820162936779912
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +305,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.1757, z: 0}
-  m_LocalScale: {x: 0.4847589, y: 0.16900256, z: 0.2}
+  m_LocalScale: {x: 0.4847589, y: 0.16900256, z: 0.002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2683405406648662814}
@@ -445,7 +446,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4847589, y: 0.18248379, z: 0.2}
+  m_LocalScale: {x: 0.4847589, y: 0.18248379, z: 0.002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2284218956112760132}
@@ -788,6 +789,38 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 8107187146623969946}
+    - target: {fileID: 3782260079967398526, guid: 2e9b8c2b425654deb86e07df3558ed90, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782260079967398526, guid: 2e9b8c2b425654deb86e07df3558ed90, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782260079967398526, guid: 2e9b8c2b425654deb86e07df3558ed90, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782260079967398526, guid: 2e9b8c2b425654deb86e07df3558ed90, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590812063810651834, guid: 2e9b8c2b425654deb86e07df3558ed90, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590812063810651834, guid: 2e9b8c2b425654deb86e07df3558ed90, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590812063810651834, guid: 2e9b8c2b425654deb86e07df3558ed90, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590812063810651834, guid: 2e9b8c2b425654deb86e07df3558ed90, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7590812063810651837, guid: 2e9b8c2b425654deb86e07df3558ed90, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

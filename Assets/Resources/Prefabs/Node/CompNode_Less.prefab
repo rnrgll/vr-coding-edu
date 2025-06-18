@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8311896454429288350, guid: ef546b11f849a472ba18b67e3a3db7a3, type: 3}
       propertyPath: m_Name
-      value: CompNode_Less Variant
+      value: CompNode_Less
       objectReference: {fileID: 0}
     - target: {fileID: 8967839683268329406, guid: ef546b11f849a472ba18b67e3a3db7a3, type: 3}
       propertyPath: m_LocalPosition.x

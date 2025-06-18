@@ -113,6 +113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GetVariableNode_Int Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5563355945297831417, guid: 2db5ae0cdd55c45b78924a239bfad324, type: 3}
+      propertyPath: m_MovementType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6071574351147674894, guid: 2db5ae0cdd55c45b78924a239bfad324, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.822

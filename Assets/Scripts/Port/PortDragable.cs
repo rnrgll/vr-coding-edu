@@ -31,8 +31,6 @@ public class PortDragable : MonoBehaviour
         dragHandleOriginPos = myPort.HandlePos;
 
         grabInteractable = GetComponent<XRGrabInteractable>();
-        grabInteractable.selectEntered.AddListener(OnGrabStart);
-        grabInteractable.selectExited.AddListener(OnGragEnd);
     }
 
     private void OnEnable()
@@ -92,6 +90,9 @@ public class PortDragable : MonoBehaviour
         
         if (curentLine == null) return;
         Debug.Log("curentLine != null");
+
+
+        bool isConnected = false;
         //감지한 포트가 있는 경우
         if (detectedPorts.Count!=0)
         {
@@ -100,23 +101,38 @@ public class PortDragable : MonoBehaviour
             Port detecedPort = GetClosestPort();
           
             //연결 시도
-            if (myPort != null && detecedPort != null && myPort.CanConntectTo(detecedPort))
+            // if (myPort != null && detecedPort != null && myPort.CanConntectTo(detecedPort))
+            if (myPort != null && detecedPort != null)
             {
-                Debug.Log(detecedPort.gameObject.name + " 포트가 가장 가까움");
-                //기존 연결 해제, 이벤트 구독 해제
-                if (myPort.IsConnected)
+                Debug.Log($"[{myPort.name}] → [{detecedPort.name}] 연결 가능 여부: {myPort.CanConntectTo(detecedPort)}");
+
+                if (myPort.CanConntectTo(detecedPort))
                 {
-                    myPort.Disconnect();
-                    myPort.ParentNode.GetComponent<NodeDragable>().OnMoved.RemoveListener(UpdateHandlePosition);
+                    Debug.Log(detecedPort.gameObject.name + " 포트가 가장 가까움");
+                    //기존 연결 해제, 이벤트 구독 해제
+                    if (myPort.IsConnected)
+                    {
+                        myPort.Disconnect();
+                        
+                        myPort.ParentNode.GetComponent<NodeDragable>().OnMoved.RemoveListener(UpdateHandlePosition);
+                        myPort.ConnectedPort.ParentNode.GetComponent<NodeDragable>().OnMoved.RemoveListener(UpdateHandlePosition);
+
+                        
+                        Debug.Log("기존 연결 해제, 이벤트 구독 해제");
+                    }
+
+                    //새로운 연결 설정, 이벤트 구독
+                    myPort.Connect(detecedPort);
+                    
+                    myPort.ParentNode.GetComponent<NodeDragable>().OnMoved.AddListener(UpdateHandlePosition);
+                    detecedPort.ParentNode.GetComponent<NodeDragable>().OnMoved.AddListener(UpdateHandlePosition);
+
+                    
+                    dragHandle.position = detecedPort.HandlePos.position; //연결된 위치로 변경
+                    isConnected = true;
+                    Debug.Log("포트 연결");
+                    return;
                 }
-                 
-                
-                //새로운 연결 설정, 이벤트 구독
-                myPort.Connect(detecedPort);
-                detecedPort.ParentNode.GetComponent<NodeDragable>().OnMoved.AddListener(UpdateHandlePosition);
-                dragHandle.position = detecedPort.HandlePos.position; //연결된 위치로 변경
-                Debug.Log("포트 연결");
-                return;
             }
         }
 
@@ -124,10 +140,14 @@ public class PortDragable : MonoBehaviour
         // 연결 상태를 초기화한다.
         //myPort.Disconnect();
         // dragHandle을 원래 위치로 복구시킨다.
-        dragHandle.position = dragHandleOriginPos.position;
-        curentLine.DestroyLine();
-        curentLine = null;
-        //detecedPort = null;
+        if (!isConnected)
+        {
+            dragHandle.position = dragHandleOriginPos.position;
+            curentLine.DestroyLine();
+            curentLine = null;
+            //detecedPort = null;
+        }
+      
     }
 
     private Port GetClosestPort()
